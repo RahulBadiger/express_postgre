@@ -2,11 +2,13 @@ import client from "./databasepg.js";
 import { v4 as uuidv4 } from "uuid";
 
 const addUser = (req, res) => {
-  const userId = uuidv4(); // Generate a unique userId
+  const userId = uuidv4(); 
   const firstname = req.body.firstname;
   const lastname = req.body.lastname;
+  const email = req.body.email;
+  const number = req.body.number;
   const location = req.body.location;
-  const values = [userId, firstname, lastname, location];
+  const values = [userId, firstname, lastname,email,number, location];
 
   try {
     // Checking if the user already exists by userId
@@ -16,7 +18,7 @@ const addUser = (req, res) => {
         res.status(500).send("Database error");
       } else if (result.rows.length === 0) {
         // The user does not exist; insert the record
-        const insertQuery = 'INSERT INTO users (id, firstname, lastname, location) VALUES ($1, $2, $3, $4)';
+        const insertQuery = 'INSERT INTO users (id, firstname, lastname,email,number, location) VALUES ($1, $2, $3, $4,$5,$6)';
         client.query(insertQuery, values, (error, result) => {
           if (error) {
             console.error(error);

@@ -1,5 +1,5 @@
 // const {postData} = require("./data.schema");
-import data from "../controllers/databasepg.js";
+import data from "./dataSchema.js";
 
 
     const userValidation = (req,res,next)=>{

@@ -5,11 +5,13 @@ const updateUserById = (req, res) => {
     const id = req.params["id"];
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
+    const email = req.body.email;
+    const number = req.body.number;
     const location = req.body.location;
   
     client.query(
       `UPDATE users 
-         SET firstname = '${firstname}', lastname = '${lastname}', location = '${location}'
+         SET firstname = '${firstname}', lastname = '${lastname}', email = '${email}',number = '${number}',location = '${location}'
          WHERE id = '${id}'`,
       (err, result) => {
         if (err) {

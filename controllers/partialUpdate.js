@@ -1,6 +1,6 @@
-import { getRecordByIdQuery } from "../helper/query";
-import { dbErr, unsuccessfulUpdate, updatedMessage } from "../helper/responses";
-import client from "./databasepg";
+import { getRecordByIdQuery } from "../helper/query.js";
+import { dbErr, unsuccessfulUpdate, updatedMessage } from "../helper/responses.js";
+import client from "./databasepg.js";
 
 
 const partialUpdate = (req, res) => {
@@ -13,12 +13,14 @@ const partialUpdate = (req, res) => {
     } else {
       const firstname = req.body.firstname || result.rows[0].firstname;
       const lastname = req.body.lastname || result.rows[0].lastname;
+      const email = req.body.email || result.rows[0].email;
+      const number = req.body.number || result.rows[0].number;
       const location = req.body.location || result.rows[0].location;
 
 
       client.query(
         `UPDATE users 
-           SET firstname = '${firstname}' ,lastname = '${lastname}',location = '${location}'
+           SET firstname = '${firstname}' ,lastname = '${lastname}',email = '${email}',number = '${number}',location = '${location}'
            WHERE id = '${id}'`,
         (err, result) => {
           if (err) {

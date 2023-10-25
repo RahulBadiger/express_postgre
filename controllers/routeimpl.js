@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
-dotenv.config();
 import pg from  "pg";
+dotenv.config();
 
 let pool = new pg.Pool({
   host: "localhost",
@@ -17,8 +17,6 @@ import {
   deleteQuery,
 } from "../helper/query.js";
 
-import { updatedDate, createdDate } from "../helper/cddate.js";
-console.log(updatedDate);
 
 import {
   primaryKeyViolation,
